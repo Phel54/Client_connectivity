@@ -7,9 +7,8 @@ script:
   - ./mvnw clean install -B
 jobs:
   include:
-    - stage: Test
-      script:
-        - ./mvnm clean test -B
+    - stage: test
+      script: ./mvnw clean test
 before_install:
   - chmod +x mvnw
 
