@@ -1,0 +1,12 @@
+language: java
+jdk:
+  - openjdk15
+  - openjdk11
+script: ./mvnw clean install
+jobs:
+  include:
+    - stage: Test
+      script: ./mvnm clean test
+      
+
+
