@@ -1,4 +1,5 @@
 language: java
+sudo: true
 jdk:
   - openjdk15
 
@@ -9,7 +10,7 @@ jobs:
     - stage: Test
       script: ./mvnm clean test
 before_install:
-  - chmod +x ./mvnm
+  - chmod +x mvnw
 
 
 
