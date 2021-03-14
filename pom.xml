@@ -13,9 +13,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Client_connectivity</name>
 	<description>This service is for authorizing and authenticating users into a trade engine system</description>
-<!--	<properties>-->
-<!--		<java.version>15</java.version>-->
-<!--	</properties>-->
+	<properties>
+		<java.version>15</java.version>
+	</properties>
 	<dependencies>
 <!--		<dependency>-->
 <!--			<groupId>org.springframework.boot</groupId>-->
@@ -86,7 +86,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
 
                 <configuration>
                     <source>11</source>
