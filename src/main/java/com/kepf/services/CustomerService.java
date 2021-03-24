@@ -47,7 +47,7 @@ public class CustomerService {
        try{
            final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getEmail());
            final String jwt = jwtUtil.generateToken((MyUserDetails) userDetails);
-           return ResponseEntity.ok(Helpers.apiResponse(200,"order created",new AuthResponse(jwt)));
+           return ResponseEntity.ok(Helpers.apiResponse(200,"login successful",new AuthResponse(jwt)));
        }catch (Exception e){
            return ResponseEntity.status(400).body(Helpers.apiResponse(400,"sorry something went wrong", Collections.emptyList()));
        }

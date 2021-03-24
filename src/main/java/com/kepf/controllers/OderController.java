@@ -31,7 +31,7 @@ public class OderController {
         return orderService.allOrders();
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/customer/{userId}")
     public ResponseEntity<?>userOrders(@PathVariable Integer userId){
         return orderService.userOrders(userId);
     }
