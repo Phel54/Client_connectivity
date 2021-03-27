@@ -1,6 +1,7 @@
 package com.kepf.controllers;
 
 import com.kepf.exceptions.UsersException;
+import com.kepf.models.AccountRequest;
 import com.kepf.models.AuthRequest;
 import com.kepf.models.Customer;
 import com.kepf.services.CustomerService;
@@ -12,6 +13,7 @@ import javax.security.auth.login.LoginException;
 
 @RestController
 @RequestMapping(path = "api/v1/customer")
+@CrossOrigin(originPatterns = "*")
 public class CustomerController {
     @Autowired
     CustomerService customerService;
@@ -33,8 +35,8 @@ public class CustomerController {
     }
 
     @PutMapping("/topup/balance/{customerId}")
-    public ResponseEntity<?> topUpBalance(@RequestBody double amount, @PathVariable Integer customerId) {
-        return customerService.topUpBalance(customerId,amount);
+    public ResponseEntity<?> topUpBalance(@RequestBody AccountRequest accountRequest, @PathVariable Integer customerId) {
+        return customerService.topUpBalance(accountRequest, customerId);
     }
 
     @DeleteMapping("/delete/account/{customerId}")

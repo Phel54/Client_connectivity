@@ -29,6 +29,7 @@ public class ClientConnectivityApplication {
 		registrationBean.setFilter(authFilter);
 		registrationBean.addUrlPatterns("/api/v1/customer/*");
 		registrationBean.addUrlPatterns("/api/v1/order/*");
+		registrationBean.addUrlPatterns("/api/v1/portfolio/*");
 		return registrationBean;
 	}
 

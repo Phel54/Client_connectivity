@@ -4,18 +4,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity
+@Entity(name = "orders")
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 @Data
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    private String exchange_order_id;
 
     @ManyToOne
     @JoinColumn( referencedColumnName = "id")
@@ -41,6 +42,8 @@ public class Orders {
 
     @Column(columnDefinition = "boolean  default false")
     private Boolean is_success;
+
+
 
 
 

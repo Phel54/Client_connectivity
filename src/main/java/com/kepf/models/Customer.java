@@ -13,8 +13,6 @@ import java.util.List;
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 @Data
 public class Customer {
 @Id
@@ -36,15 +34,17 @@ private String password;
 @Column(columnDefinition = " DOUBLE PRECISION default 0.0 ")
 private Double account_balance;
 
-@Column(columnDefinition = " boolean default true ")
-private Boolean is_active;
-
  @OneToMany(mappedBy = "customer")
  @JsonIgnore
  private List<Orders> orders;
 
- public void setAccount_balance(double account_balance) {
- this.account_balance= account_balance<=0?(this.account_balance+0):(this.account_balance +account_balance);
+ @OneToMany(mappedBy = "customer")
+ @JsonIgnore
+ private List<Portfolio> portfolios;
 
- }
+
+// public void setAccount_balance(double account_balance) {
+// this.account_balance= account_balance<=0?(this.account_balance+0):(this.account_balance +account_balance);
+//
+// }
 }

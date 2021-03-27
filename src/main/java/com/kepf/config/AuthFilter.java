@@ -65,7 +65,8 @@ public class AuthFilter extends OncePerRequestFilter {
        this.userDetails = (MyUserDetails) jwtUserDetailService.loadUserByUsername(this.email);
 
         if(jwtUtil.validateToken(token, this.userDetails)){
-            request.setAttribute("email", this.email);
+            request.setAttribute("email", this.userDetails.getEmail());
+            //request.setAttribute("userId",this.userDetails.);
         }
 
         filterChain.doFilter(request,response);

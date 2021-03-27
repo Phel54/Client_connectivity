@@ -11,12 +11,14 @@ import java.util.Collection;
 public class MyUserDetails implements UserDetails {
     private String email;
     private String password;
+    private int id;
     private boolean is_active;
 
     public MyUserDetails(Customer customer){
         this.email = customer.getEmail();
+        this.id = customer.getId();
         this.password = customer.getPassword();
-        this.is_active = true;
+
     }
     public MyUserDetails(){
 
@@ -35,6 +37,9 @@ public class MyUserDetails implements UserDetails {
         return this.email;
     }
 
+    public int getId() {
+        return id;
+    }
 
     @Override
     public String getUsername() {
@@ -59,6 +64,6 @@ public class MyUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
 
-        return this.is_active;
+        return true;
     }
 }

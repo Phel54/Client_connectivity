@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/order")
+@CrossOrigin(originPatterns = "*")
 public class OderController {
     @Autowired
     OrderService orderService;
@@ -31,8 +32,18 @@ public class OderController {
         return orderService.allOrders();
     }
 
-    @GetMapping("/customer/{userId}")
-    public ResponseEntity<?>userOrders(@PathVariable Integer userId){
-        return orderService.userOrders(userId);
+    @GetMapping("/customer/{customerId}")
+    public ResponseEntity<?>userOrders(@PathVariable Integer customerId){
+        return orderService.userOrders(customerId);
+    }
+
+    @GetMapping("/customer/order/complete/{customerId}")
+    public ResponseEntity<?>successfulUserOrders(@PathVariable Integer customerId){
+        return orderService.successfulUserOrders(customerId);
+    }
+
+    @GetMapping("/customer/order/pending/{customerId}")
+    public ResponseEntity<?>pendingUserOrders(@PathVariable Integer customerId){
+        return orderService.pendingUserOrders(customerId);
     }
 }
