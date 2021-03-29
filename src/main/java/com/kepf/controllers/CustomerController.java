@@ -1,6 +1,6 @@
 package com.kepf.controllers;
 
-import com.kepf.exceptions.UsersException;
+
 import com.kepf.models.AccountRequest;
 import com.kepf.models.AuthRequest;
 import com.kepf.models.Customer;
@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.security.auth.login.LoginException;
+
 
 @RestController
 @RequestMapping(path = "api/v1/customer")
-@CrossOrigin(originPatterns = "*")
+@CrossOrigin(originPatterns = "*", allowedHeaders = "*")
 public class CustomerController {
     @Autowired
     CustomerService customerService;

@@ -1,6 +1,5 @@
 package com.kepf.services;
 
-import com.kepf.exceptions.UsersException;
 import com.kepf.models.*;
 import com.kepf.repositories.CustomerRepository;
 import com.kepf.utils.Helpers;
@@ -13,7 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import javax.security.auth.login.LoginException;
 import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.Optional;
@@ -61,7 +59,7 @@ public class CustomerService {
             customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 
             Customer newCustomer = customerRepository.save(customer);
-            return ResponseEntity.ok(Helpers.apiResponse(200,"order created",newCustomer));
+            return ResponseEntity.ok(Helpers.apiResponse(200,"user created",newCustomer));
 
         }catch (Exception e){
             return ResponseEntity.status(400).body(Helpers.apiResponse(400,"sorry something went wrong", Collections.emptyList()));

@@ -9,13 +9,10 @@ import com.kepf.repositories.PortfolioRepository;
 import com.kepf.utils.Helpers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
-import java.util.Optional;
+
 
 @Service
 public class PortfolioService {
@@ -57,6 +54,14 @@ public class PortfolioService {
             return ResponseEntity.ok(Helpers.apiResponse(200,"success","portfolio deleted"));
         }catch (Exception e){
             return ResponseEntity.status(400).body(Helpers.apiResponse(400,"sorry error deleting portfolio", Collections.emptyList()));
+        }
+    }
+
+    public ResponseEntity<?> allCustomerPortfolio(Integer customerId) {
+        try{
+            return ResponseEntity.ok(Helpers.apiResponse(200,"success",portfolioRepository.getCustomerPortfolio(customerId)));
+        }catch (Exception e){
+            return ResponseEntity.status(400).body(Helpers.apiResponse(400,"sorry something went wrong", Collections.emptyList()));
         }
     }
 }

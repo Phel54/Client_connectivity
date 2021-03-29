@@ -1,17 +1,16 @@
 package com.kepf.controllers;
 
-import com.kepf.models.Orders;
 import com.kepf.services.OrderService;
 import com.kepf.wsdl.CustomerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
 @RequestMapping(path = "api/v1/order")
-@CrossOrigin(originPatterns = "*")
+@CrossOrigin(originPatterns = "*",allowedHeaders = "*")
 public class OderController {
     @Autowired
     OrderService orderService;

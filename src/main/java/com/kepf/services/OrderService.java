@@ -1,4 +1,5 @@
 package com.kepf.services;
+
 import com.kepf.models.Customer;
 import com.kepf.models.Orders;
 import com.kepf.repositories.OrderRepository;
@@ -9,9 +10,7 @@ import com.kepf.wsdl.CustomerRequest;
 import com.kepf.wsdl.CustomerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 
@@ -27,7 +26,7 @@ public class OrderService {
     public ResponseEntity<?> createOrder(CustomerRequest orders){
         Optional<Customer> customer  = customerRepository.findById(orders.getCustomerId());
         if(customer.isEmpty())
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(404).body(Helpers.apiResponse(404,"sorry no customer exist", Collections.emptyList()));
 
         try{
             CustomerResponse response = soapClient.sendOrderRequest(orders);

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api/v1/portfolio")
-@CrossOrigin(originPatterns = "*")
+@CrossOrigin(originPatterns = "*", allowedHeaders = "*")
 public class PortfolioController {
     @Autowired
     PortfolioService portfolioService;
@@ -23,7 +23,12 @@ public class PortfolioController {
         return  portfolioService.allPortfolio();
     }
 
-    @DeleteMapping("/delete/{orderId}")
+    @GetMapping("/customer/{customerId}")
+    public ResponseEntity<?>allCustomerPortfolio(@PathVariable Integer customerId){
+        return  portfolioService.allCustomerPortfolio(customerId);
+    }
+
+    @DeleteMapping("/delete/{portfolioId}")
     public ResponseEntity<?>deletePortfolio(@PathVariable Integer portfolioId){
         return portfolioService.deletePortfolio(portfolioId);
     }
