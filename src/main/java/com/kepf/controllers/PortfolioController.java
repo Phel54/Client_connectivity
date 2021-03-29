@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/api/v1/portfolio")
-@CrossOrigin(originPatterns = "*", allowedHeaders = "*")
 public class PortfolioController {
     @Autowired
     PortfolioService portfolioService;

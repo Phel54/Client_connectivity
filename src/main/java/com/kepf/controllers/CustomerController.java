@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "api/v1/customer")
-@CrossOrigin(originPatterns = "*", allowedHeaders = "*")
 public class CustomerController {
     @Autowired
     CustomerService customerService;

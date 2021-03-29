@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "api/v1/order")
-@CrossOrigin(originPatterns = "*",allowedHeaders = "*")
 public class OderController {
     @Autowired
     OrderService orderService;
