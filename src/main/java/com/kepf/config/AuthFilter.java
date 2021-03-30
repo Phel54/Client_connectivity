@@ -40,7 +40,11 @@ public class AuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
+//        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+//        response.setHeader("Access-Control-Expose-Headers", "Authorization");
+//        response.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,PUT,OPTIONS");
+//        response.setHeader("Access-Control-Allow-Headers", "append,delete,entries,foreach,get,has,keys,set,values,Authorization");
+//        response.setHeader("Access-Control-Max-Age", "86400");
         String authHeader = request.getHeader("Authorization");
         if (authHeader == null) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN, "no token provided");

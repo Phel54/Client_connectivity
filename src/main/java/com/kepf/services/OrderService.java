@@ -29,10 +29,12 @@ public class OrderService {
             return ResponseEntity.status(404).body(Helpers.apiResponse(404,"sorry no customer exist", Collections.emptyList()));
 
         try{
+            System.out.println("before");
             CustomerResponse response = soapClient.sendOrderRequest(orders);
+            System.out.println("response");
             return ResponseEntity.ok(Helpers.apiResponse(200,"order submitted", orders));
         }catch (Exception e){
-            return ResponseEntity.status(400).body(Helpers.apiResponse(400,"sorry something went wrong while submitting order", Collections.emptyList()));
+            return ResponseEntity.status(400).body(Helpers.apiResponse(400,"sorry something went wrong while submitting order"+e.getMessage(), Collections.emptyList()));
         }
 
 
