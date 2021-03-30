@@ -8,5 +8,7 @@ import lombok.Data;
 public class AuthResponse {
     private String jwt;
     private int id;
+    private double account_balance;
+    private String email;
 
 }

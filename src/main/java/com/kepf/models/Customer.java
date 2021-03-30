@@ -2,11 +2,15 @@ package com.kepf.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -35,12 +39,21 @@ private String password;
 private Double account_balance;
 
  @OneToMany(mappedBy = "customer")
+ @ToString.Exclude
+ @EqualsAndHashCode.Exclude
  @JsonIgnore
  private List<Orders> orders;
 
  @OneToMany(mappedBy = "customer")
+ @ToString.Exclude
+ @EqualsAndHashCode.Exclude
  @JsonIgnore
  private List<Portfolio> portfolios;
+
+ @CreationTimestamp
+ private LocalDateTime created_at;
+ @UpdateTimestamp
+ private LocalDateTime updated_at;
 
 
 // public void setAccount_balance(double account_balance) {

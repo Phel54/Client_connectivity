@@ -1,5 +1,6 @@
 package com.kepf.controllers;
 
+import com.kepf.models.PortfolioRequest;
 import com.kepf.services.PortfolioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +12,10 @@ import org.springframework.web.bind.annotation.*;
 public class PortfolioController {
     @Autowired
     PortfolioService portfolioService;
-    @PostMapping("/{orderId}/{customerId}")
-    public ResponseEntity<?>addPortfolio(@PathVariable Integer orderId, @PathVariable Integer customerId){
-        return portfolioService.addPortfolio(orderId, customerId);
+
+    @PostMapping
+    public ResponseEntity<?>addPortfolio(@RequestBody PortfolioRequest portfolioRequest){
+        return portfolioService.addPortfolio(portfolioRequest);
     }
 
     @GetMapping

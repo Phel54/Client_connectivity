@@ -13,11 +13,13 @@ public class MyUserDetails implements UserDetails {
     private String password;
     private int id;
     private boolean is_active;
+    private double account_balance;
 
     public MyUserDetails(Customer customer){
         this.email = customer.getEmail();
         this.id = customer.getId();
         this.password = customer.getPassword();
+        this.account_balance =customer.getAccount_balance();
 
     }
     public MyUserDetails(){
@@ -33,6 +35,11 @@ public class MyUserDetails implements UserDetails {
 
         return this.password;
     }
+
+    public double getAccount_balance() {
+        return account_balance;
+    }
+
     public String getEmail(){
         return this.email;
     }

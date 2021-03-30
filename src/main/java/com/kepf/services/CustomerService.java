@@ -42,7 +42,7 @@ public class CustomerService {
        try{
            final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getEmail());
            final String jwt = jwtUtil.generateToken((MyUserDetails) userDetails);
-           return ResponseEntity.ok(Helpers.apiResponse(200,"login successful",new AuthResponse(jwt,((MyUserDetails) userDetails).getId())));
+           return ResponseEntity.ok(Helpers.apiResponse(200,"login successful",new AuthResponse(jwt,((MyUserDetails) userDetails).getId(),((MyUserDetails) userDetails).getAccount_balance(),((MyUserDetails) userDetails).getEmail())));
        }catch (Exception e){
            return ResponseEntity.status(400).body(Helpers.apiResponse(400,"sorry something went wrong", Collections.emptyList()));
        }
@@ -89,9 +89,10 @@ public class CustomerService {
 //        if(customer.isEmpty())
 //            return ResponseEntity.badRequest().body(Helpers.apiResponse(400,"sorry no user exist",Collections.singletonList(customer)));
         assert customer != null;
-        customer.setAccount_balance(accountRequest.getAccount_balance());
+        customer.setAccount_balance(customer.getAccount_balance()+
+                accountRequest.getAccount_balance());
         customerRepository.save(customer);
-        return ResponseEntity.ok(Helpers.apiResponse(200,"success",Collections.singletonList(customer)));
+        return ResponseEntity.ok(Helpers.apiResponse(200,"success",customer));
 
 
     }
