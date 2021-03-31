@@ -43,7 +43,10 @@ public class OrderService {
     public ResponseEntity<?> orderById(Integer orderId) {
         try{
             Optional<Orders> order = orderRepository.findById(orderId);
-            return ResponseEntity.ok(Helpers.apiResponse(200,"success",Collections.singletonList(order)));
+            if (order.isEmpty())
+                return ResponseEntity.status(400).body(Helpers.apiResponse(404,"no record found", Collections.emptyList()));
+
+            return ResponseEntity.ok(Helpers.apiResponse(200,"success",Collections.singletonList(order.get())));
         }catch (Exception e){
             return ResponseEntity.status(400).body(Helpers.apiResponse(400,"sorry something went wrong", Collections.emptyList()));
         }
@@ -71,13 +74,13 @@ public class OrderService {
         Optional<List<Orders>> userOrders = orderRepository.getUserSuccessfulOrders(customerId);
         if(userOrders.isEmpty())
             return ResponseEntity.status(400).body(Helpers.apiResponse(404,"no record found", Collections.emptyList()));
-        return ResponseEntity.ok(Helpers.apiResponse(200,"success",userOrders));
+        return ResponseEntity.ok(Helpers.apiResponse(200,"success",userOrders.get()));
     }
 
     public ResponseEntity<?> pendingUserOrders(Integer customerId) {
         Optional<List<Orders>> userOrders = orderRepository.getUserPendingOrders(customerId);
         if(userOrders.isEmpty())
             return ResponseEntity.status(400).body(Helpers.apiResponse(404,"no record found", Collections.emptyList()));
-        return ResponseEntity.ok(Helpers.apiResponse(200,"success",userOrders));
+        return ResponseEntity.ok(Helpers.apiResponse(200,"success",userOrders.get()));
     }
 }
