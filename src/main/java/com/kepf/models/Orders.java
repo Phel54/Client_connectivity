@@ -52,7 +52,4 @@ public class Orders {
     private LocalDateTime updated_at;
 
 
-
-
-
 }
