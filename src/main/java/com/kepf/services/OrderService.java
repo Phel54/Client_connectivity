@@ -51,7 +51,10 @@ public class OrderService {
 
 
     public ResponseEntity<?> userOrders(Integer customerId) {
-        List<Orders> userOrders = orderRepository.findByCustomerId(customerId);
+        Optional<List<Orders>> userOrders = orderRepository.findByCustomerId(customerId);
+        if(userOrders.isEmpty())
+            return ResponseEntity.status(400).body(Helpers.apiResponse(404,"no record found", Collections.emptyList()));
+
         return ResponseEntity.ok(Helpers.apiResponse(200,"success",userOrders));
     }
 
@@ -64,12 +67,16 @@ public class OrderService {
     }
 
     public ResponseEntity<?> successfulUserOrders(Integer customerId) {
-        List<Orders> userOrders = orderRepository.getUserSuccessfulOrders(customerId);
+        Optional<List<Orders>> userOrders = orderRepository.getUserSuccessfulOrders(customerId);
+        if(userOrders.isEmpty())
+            return ResponseEntity.status(400).body(Helpers.apiResponse(404,"no record found", Collections.emptyList()));
         return ResponseEntity.ok(Helpers.apiResponse(200,"success",userOrders));
     }
 
     public ResponseEntity<?> pendingUserOrders(Integer customerId) {
-        List<Orders> userOrders = orderRepository.getUserPendingOrders(customerId);
+        Optional<List<Orders>> userOrders = orderRepository.getUserPendingOrders(customerId);
+        if(userOrders.isEmpty())
+            return ResponseEntity.status(400).body(Helpers.apiResponse(404,"no record found", Collections.emptyList()));
         return ResponseEntity.ok(Helpers.apiResponse(200,"success",userOrders));
     }
 }
