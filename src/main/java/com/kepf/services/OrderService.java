@@ -55,7 +55,8 @@ public class OrderService {
         if(userOrders.isEmpty())
             return ResponseEntity.status(400).body(Helpers.apiResponse(404,"no record found", Collections.emptyList()));
 
-        return ResponseEntity.ok(Helpers.apiResponse(200,"success",userOrders));
+        System.out.println(userOrders.get());
+        return ResponseEntity.ok(Helpers.apiResponse(200,"success",userOrders.get()));
     }
 
     public ResponseEntity<?> allOrders() {
